@@ -10,7 +10,9 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-let theTeam = [];
+let theTeam = []; 
+
+function addEmployee() {
 
 inquirer
     .prompt([ 
@@ -31,156 +33,164 @@ inquirer
                 case 'Intern': 
                     intern()
                     break; 
+                case 'No':
+                    writeFile()
+                    break;
                 default:
-                    writeFile() 
+                
+                    
         } 
     });
         
-function manager() {
-    const answers = inquirer 
-                .prompt([ 
-                    {
-                        type: 'input',
-                        name: 'name',
-                        message: 'Enter the employee name. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'id',
-                        message: 'Enter employee ID. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'email',
-                        message: 'Enter the employee email. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'officeNumber',
-                        message: 'Enter the Manager office number. ',
-                    },
-                    {
-                        type: 'list',
-                        name: 'repeat',
-                        message: 'Add another employee? ',
-                        choices: ['Manager', 'Engineer', 'Intern', 'None'],
-                    },  
+    function manager() {
+        const answers = inquirer 
+                    .prompt([ 
+                        {
+                            type: 'input',
+                            name: 'name',
+                            message: 'Enter the employee name. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'id',
+                            message: 'Enter employee ID. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'email',
+                            message: 'Enter the employee email. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'officeNumber',
+                            message: 'Enter the Manager office number. ',
+                        },
+                        {
+                            type: 'list',
+                            name: 'repeat',
+                            message: 'Add another employee? ',
+                            choices: ['Yes', 'No'],
+                        },  
 
-                ]).then((answers) => { 
-                    const manager = new Manager(answers.name , answers.id, answers.email, answers.officeNumber)
-                   
-                    theTeam.push(manager)
-              
-                    switch (answers.role) {
-                        case 'Engineer': 
-                            engineer()
-                            break;
-                        case 'Intern': 
-                            intern()
-                            break; 
-                        default:
-                            writeFile()   
-                    }; 
-                });
-}
-function engineer() {
-    const answers = inquirer 
-                .prompt([ 
-                    {
-                        type: 'input',
-                        name: 'name',
-                        message: 'Enter the employee name. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'id',
-                        message: 'Enter employee ID. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'email',
-                        message: 'Enter the employee email. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'officeNumber',
-                        message: 'Enter the Engineer github usename. ',
-                    },
-                    {
-                        type: 'list',
-                        name: 'repeat',
-                        message: 'Add another employee? ',
-                        choices: ['Manager', 'Engineer', 'Intern', 'None'],
-                    },  
+                    ]).then((answers) => { 
+                        const manager = new Manager(answers.name , answers.id, answers.email, answers.officeNumber)
+                    
+                        theTeam.push(manager)
+                
+                        switch (answers.role) {
+                            case 'Yes': 
+                                addEmployee()
+                                break;
+                            case 'No':
+                                writeFile()
+                                break;
+                            default:
+                                addEmployee()
+                                
+                        }; 
+                    });
+    }
+    function engineer() {
+        const answers = inquirer 
+                    .prompt([ 
+                        {
+                            type: 'input',
+                            name: 'name',
+                            message: 'Enter the employee name. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'id',
+                            message: 'Enter employee ID. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'email',
+                            message: 'Enter the employee email. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'officeNumber',
+                            message: 'Enter the Engineer github usename. ',
+                        },
+                        {
+                            type: 'list',
+                            name: 'repeat',
+                            message: 'Add another employee? ',
+                            choices: ['Yes', 'No'],
+                        },  
 
-                ]).then((answers) => { 
-                    const engineer =  new Engineer(answers.name , answers.id, answers.email, answers.github)
-                   
-                    theTeam.push(engineer)
-              
-                    switch (answers.role) {
-                        case 'Manager': 
-                            manager()
-                            break;
-                        case 'Intern': 
-                            intern()
-                            break; 
-                        default:
-                            writeFile()   
-                    }; 
-                });
-}
+                    ]).then((answers) => { 
+                        const engineer =  new Engineer(answers.name , answers.id, answers.email, answers.github)
+                    
+                        theTeam.push(engineer)
+                
+                        switch (answers.role) {
+                            case 'Yes': 
+                                addEmployee()
+                                break;
+                            case 'No':
+                                writeFile()
+                                break;
+                            default:
+                                addEmployee()
+                        }; 
+                    });
+    }
 
-function intern() {
-    const answers = inquirer 
-                .prompt([ 
-                    {
-                        type: 'input',
-                        name: 'name',
-                        message: 'Enter the employee name. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'id',
-                        message: 'Enter employee ID. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'email',
-                        message: 'Enter the employee email. ',
-                    },
-                    {
-                        type: 'input',
-                        name: 'officeNumber',
-                        message: 'Enter the Intern school. ',
-                    },
-                    {
-                        type: 'list',
-                        name: 'repeat',
-                        message: 'Add another employee? ',
-                        choices: ['Manager', 'Engineer', 'Intern', 'None'],
-                    },  
+    function intern() {
+        const answers = inquirer 
+                    .prompt([ 
+                        {
+                            type: 'input',
+                            name: 'name',
+                            message: 'Enter the employee name. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'id',
+                            message: 'Enter employee ID. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'email',
+                            message: 'Enter the employee email. ',
+                        },
+                        {
+                            type: 'input',
+                            name: 'officeNumber',
+                            message: 'Enter the Intern school. ',
+                        },
+                        {
+                            type: 'list',
+                            name: 'repeat',
+                            message: 'Add another employee? ',
+                            choices: ['Yes', 'No'],
+                        },  
 
-                ]).then((answers) => { 
-                    const intern =  new Intern(answers.name , answers.id, answers.email, answers.school)
-                   
-                    theTeam.push(engineer)
-              
-                    switch (answers.role) {
-                        case 'Manager': 
-                            manager()
-                            break;
-                        case 'Intern': 
-                            intern()
-                            break; 
-                        default:
-                            writeFile()   
-                    }; 
-                });
-}
-       
-function writeFile() { 
-    fs.writeFile(outputPath, render(theTeam), (err) => {
-        if (err) throw err; 
-    });
-};
+                    ]).then((answers) => { 
+                        const intern =  new Intern(answers.name , answers.id, answers.email, answers.school)
+                    
+                        theTeam.push(engineer)
+                
+                        switch (answers.role) {
+                            case 'Yes': 
+                                addEmployee()
+                                break;
+                            case 'No': 
+                                writeFile()
+                                break;
+                            default: 
+                                
+                        }; 
+                    });
+    }
+        
+    function writeFile() { 
+        fs.writeFile(outputPath, render(theTeam), (err) => {
+            if (err) throw err; 
+        });
+    };
+}; 
+
+addEmployee();
