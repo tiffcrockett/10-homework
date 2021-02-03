@@ -74,15 +74,15 @@ function manager() {
                     theTeam.push(manager) 
 
                     switch (answers.role) {
-                        case 'Manager': 
-                            manager()
-                            break; 
-                        case 'Engineer': 
-                            engineer()
-                            break;
-                        case 'Intern': 
-                            intern()
-                            break; 
+                        // case 'Manager': 
+                        //     manager()
+                        //     break; 
+                        // case 'Engineer': 
+                        //     engineer()
+                        //     break;
+                        // case 'Intern': 
+                        //     intern()
+                        //     break; 
                         case 'No':
                             writeFile()
                             break;
@@ -128,17 +128,18 @@ function engineer() {
                 ]).then((answers) => { 
                     const engineer =  new Engineer(answers.name , answers.id, answers.email, answers.github)
                 
-                    theTeam.push(engineer)
+                    theTeam.push(engineer) 
+                    
                     switch (answers.role) {
-                        case 'Manager': 
-                            manager()
-                            break; 
-                        case 'Engineer': 
-                            engineer()
-                            break;
-                        case 'Intern': 
-                            intern()
-                            break; 
+                        // case 'Manager': 
+                        //     manager()
+                        //     break; 
+                        // case 'Engineer': 
+                        //     engineer()
+                        //     break;
+                        // case 'Intern': 
+                        //     intern()
+                        //     break; 
                         case 'No':
                             writeFile()
                             break; 
@@ -185,24 +186,22 @@ function intern() {
                     const intern =  new Intern(answers.name , answers.id, answers.email, answers.school)
                 
                     theTeam.push(intern) 
+
                     switch (answers.role) {
-                        case 'Manager': 
-                            manager()
-                            break; 
-                        case 'Engineer': 
-                            engineer()
-                            break;
-                        case 'Intern': 
-                            intern()
-                            break; 
+                        // case 'Manager': 
+                        //     manager()
+                        //     break; 
+                        // case 'Engineer': 
+                        //     engineer()
+                        //     break;
+                        // case 'Intern': 
+                        //     intern()
+                        //     break; 
                         case 'Yes':
                             addEmployee()
                             break;
                         case 'No':
                             writeFile()
-                            break;
-                        case 'Yes':
-                            addEmployee()
                             break;
                         default:  
                             addEmployee()
