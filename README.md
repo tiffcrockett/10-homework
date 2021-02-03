@@ -24,7 +24,7 @@ README-Generator is a command-line application built using NODE.js.  NODE.js is 
 1. Install NODES.js (https://nodejs.org)
 2. Download the application file.
 3. Install via npm i 
-4. Run node index to begin. 
+4. Run node app.js to begin. 
 
 ## Contact 
 
