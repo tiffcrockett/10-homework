@@ -17,7 +17,7 @@ The application obtains information about the job role, email and employee id. I
 
 ## Installation
 
-README-Generator is a command-line application built using NODE.js.  NODE.js is required to use to application. Run npm i to install.
+This Employee Summary is a command-line application built using NODE.js.  NODE.js is required to use to application. Run npm i to install.
 
 ## Usage
 
